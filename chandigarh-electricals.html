@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chandigarh Electricals — We Repair, We Sell, We Visit Your Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0a0a;
+    --white:#ffffff;
+    --red:#e63946;
+    --red-dark:#c1121f;
+    --yellow:#f7b500;
+    --gray-50:#fafafa;
+    --gray-100:#f4f4f4;
+    --gray-500:#6b6b6b;
+    --gray-800:#1c1c1c;
+    --radius:16px;
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif; color:var(--black); background:var(--white); line-height:1.5; overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Poppins',sans-serif; font-weight:800; letter-spacing:-0.02em;}
+  a{text-decoration:none; color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%; display:block;}
+  .container{max-width:1200px; margin:0 auto; padding:0 24px;}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--red); background:rgba(230,57,70,0.08); padding:8px 16px; border-radius:999px; margin-bottom:18px;}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--red);}
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:14px 28px; border-radius:999px; font-weight:700; font-size:15px; cursor:pointer; border:none; transition:transform .18s ease, box-shadow .18s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--red); color:#fff; box-shadow:0 8px 20px rgba(230,57,70,0.35);}
+  .btn-primary:hover{background:var(--red-dark);}
+  .btn-dark{background:var(--black); color:#fff;}
+  .btn-outline{background:transparent; color:var(--black); border:2px solid var(--black);}
+  .btn-outline:hover{background:var(--black); color:#fff;}
+  .btn-whatsapp{background:#25D366; color:#fff;}
+
+  /* animations */
+  @keyframes fadeUp{from{opacity:0; transform:translateY(24px);} to{opacity:1; transform:translateY(0);}}
+  .reveal{opacity:0; animation:fadeUp .7s ease forwards;}
+  .reveal.d1{animation-delay:.1s;} .reveal.d2{animation-delay:.2s;} .reveal.d3{animation-delay:.3s;} .reveal.d4{animation-delay:.4s;}
+
+  /* Announcement bar */
+  .announce{background:linear-gradient(90deg, var(--red), var(--yellow)); color:#fff; text-align:center; font-size:14px; font-weight:600; padding:10px 44px; position:relative;}
+  .announce span{opacity:.95;}
+  .announce .close{position:absolute; right:16px; top:50%; transform:translateY(-50%); cursor:pointer; background:none; border:none; color:#fff; font-size:18px; line-height:1;}
+
+  /* Nav */
+  header{position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.92); backdrop-filter:blur(10px); border-bottom:1px solid #eee;}
+  nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0;}
+  .logo{display:flex; align-items:center; gap:12px;}
+  .logo-icon{width:44px; height:44px; border-radius:12px; background:var(--red); display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px; flex-shrink:0;}
+  .logo-text .top{font-family:'Poppins'; font-weight:800; font-size:18px; line-height:1.1;}
+  .logo-text .sub{font-size:10px; letter-spacing:.12em; color:var(--gray-500); font-weight:600;}
+  .nav-links{display:flex; align-items:center; gap:32px; font-weight:600; font-size:15px;}
+  .nav-links a{position:relative; padding:4px 0;}
+  .nav-links a::after{content:''; position:absolute; left:0; bottom:-2px; width:0; height:2px; background:var(--red); transition:width .2s ease;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-right{display:flex; align-items:center; gap:16px;}
+  .status-pill{font-size:12px; font-weight:700; padding:8px 14px; border-radius:999px; text-align:center; line-height:1.3;}
+  .status-open{background:rgba(37,183,86,0.1); color:#1a8a3d;}
+  .status-closed{background:rgba(230,57,70,0.1); color:var(--red);}
+  .phone-link{font-weight:700; font-size:14px; white-space:nowrap;}
+  .hamburger{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
+  .hamburger span{width:26px; height:3px; background:var(--black); border-radius:2px;}
+  .mobile-menu{display:none; flex-direction:column; gap:0; background:#fff; border-top:1px solid #eee;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:16px 24px; font-weight:600; border-bottom:1px solid #f2f2f2;}
+
+  /* Hero */
+  .hero{background:var(--gray-50); padding:64px 0 90px; position:relative; overflow:hidden;}
+  .hero::before{content:''; position:absolute; top:-80px; right:-80px; width:360px; height:360px; background:radial-gradient(circle, rgba(247,181,0,0.18), transparent 70%);}
+  .hero-inner{position:relative; z-index:1;}
+  .hero h1{font-size:clamp(38px, 6vw, 68px); line-height:1.05; margin-bottom:22px;}
+  .hero h1 .r{color:var(--red);}
+  .hero h1 .y{color:var(--yellow);}
+  .hero p.lead{font-size:18px; color:var(--gray-500); max-width:520px; margin-bottom:32px;}
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px;}
+  .hero-badges{display:flex; gap:28px; margin-top:48px; flex-wrap:wrap;}
+  .hero-badges .b{font-family:'Poppins'; font-weight:800; font-size:26px; color:var(--black);}
+  .hero-badges .b span{display:block; font-family:'Inter'; font-weight:500; font-size:13px; color:var(--gray-500);}
+
+  /* Brands strip */
+  .brands{background:var(--black); color:#fff; padding:48px 0;}
+  .brands .eyebrow{background:rgba(247,181,0,0.12); color:var(--yellow);}
+  .brands-row{display:flex; flex-wrap:wrap; gap:40px; align-items:center; margin-top:20px;}
+  .brands-row .brand{font-family:'Poppins'; font-weight:800; font-size:26px; color:#8a8a8a; letter-spacing:.02em; position:relative; padding-right:16px;}
+  .brands-row .brand::after{content:'•'; color:var(--red); position:absolute; right:0;}
+  .brands-row .brand:hover{color:#fff; transition:color .2s;}
+
+  /* Section heading */
+  .section{padding:90px 0;}
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(28px,4vw,42px); margin-bottom:14px;}
+  .section-head p{color:var(--gray-500); font-size:16px;}
+
+  /* Why choose us */
+  .why-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;}
+  .why-card{background:var(--gray-50); border-radius:var(--radius); padding:32px; transition:transform .25s ease, box-shadow .25s ease;}
+  .why-card:hover{transform:translateY(-6px); box-shadow:var(--shadow);}
+  .why-card .ic{width:52px; height:52px; border-radius:14px; background:var(--red); color:#fff; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:18px;}
+  .why-card h3{font-size:18px; margin-bottom:8px;}
+  .why-card p{color:var(--gray-500); font-size:14px;}
+
+  /* Services */
+  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .svc-card{border:1px solid #eee; border-radius:var(--radius); overflow:hidden; transition:transform .25s ease, box-shadow .25s ease; background:#fff;}
+  .svc-card:hover{transform:translateY(-6px); box-shadow:var(--shadow);}
+  .svc-img{height:150px; background-size:cover; background-position:center; position:relative;}
+  .svc-body{padding:22px;}
+  .svc-body h3{font-size:17px; margin-bottom:6px;}
+  .svc-body p{font-size:13.5px; color:var(--gray-500); margin-bottom:14px; min-height:38px;}
+  .svc-foot{display:flex; align-items:center; justify-content:space-between;}
+  .svc-price{font-family:'Poppins'; font-weight:800; font-size:15px;}
+  .svc-price span{font-weight:500; font-size:11px; color:var(--gray-500); display:block;}
+  .svc-btn{font-size:13px; font-weight:700; color:var(--red); background:rgba(230,57,70,0.08); padding:9px 16px; border-radius:999px; border:none; cursor:pointer;}
+
+  /* Products */
+  .products-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .prod-card{border:1px solid #eee; border-radius:var(--radius); overflow:hidden; background:#fff; transition:transform .25s ease, box-shadow .25s ease;}
+  .prod-card:hover{transform:translateY(-6px); box-shadow:var(--shadow);}
+  .prod-img{height:140px; background:var(--gray-100); position:relative; display:flex; align-items:center; justify-content:center; font-size:44px;}
+  .tag{position:absolute; top:10px; left:10px; background:var(--black); color:#fff; font-size:10px; font-weight:700; padding:5px 10px; border-radius:999px; text-transform:uppercase; letter-spacing:.04em;}
+  .prod-body{padding:16px;}
+  .prod-cat{font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--gray-500); font-weight:700;}
+  .prod-name{font-size:14.5px; font-weight:700; margin:4px 0 8px;}
+  .prod-brand{font-size:12px; color:var(--gray-500); margin-bottom:10px;}
+  .prod-foot{display:flex; align-items:center; justify-content:space-between;}
+  .prod-price{font-family:'Poppins'; font-weight:800; font-size:15px;}
+  .wa-btn{width:34px; height:34px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; border:none; cursor:pointer;}
+
+  /* Service area */
+  .area{background:var(--yellow); padding:80px 0;}
+  .area-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;}
+  .area h2{font-size:clamp(28px,4vw,40px); margin-bottom:16px;}
+  .area p{color:#3a3204; font-size:15px; max-width:460px;}
+  .pin-card{background:#fff; border-radius:var(--radius); padding:28px; box-shadow:var(--shadow);}
+  .pin-card label{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gray-500); margin-bottom:10px; display:block;}
+  .pin-row{display:flex; gap:10px;}
+  .pin-row input{flex:1; padding:14px 16px; border:1px solid #ddd; border-radius:12px; font-size:15px; font-family:inherit;}
+  .pin-row button{white-space:nowrap;}
+  .pin-result{margin-top:16px; padding:14px 16px; border-radius:12px; font-size:14px; font-weight:600; display:none;}
+  .pin-yes{background:rgba(37,183,86,0.1); color:#1a8a3d; display:block !important;}
+  .pin-no{background:rgba(230,57,70,0.1); color:var(--red); display:block !important;}
+
+  /* Testimonials */
+  .testi-track{display:flex; gap:22px; overflow-x:auto; padding-bottom:12px; scroll-snap-type:x mandatory;}
+  .testi-track::-webkit-scrollbar{height:6px;}
+  .testi-track::-webkit-scrollbar-thumb{background:#ddd; border-radius:10px;}
+  .testi-card{min-width:320px; scroll-snap-align:start; background:var(--gray-50); border-radius:var(--radius); padding:26px;}
+  .stars{color:var(--yellow); font-size:15px; margin-bottom:12px; letter-spacing:2px;}
+  .testi-card p.quote{font-size:14.5px; color:#333; margin-bottom:18px;}
+  .testi-person{display:flex; align-items:center; gap:12px;}
+  .avatar{width:42px; height:42px; border-radius:50%; background:var(--red); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;}
+  .testi-person .name{font-weight:700; font-size:14px;}
+  .testi-person .loc{font-size:12px; color:var(--gray-500);}
+
+  /* About / stats */
+  .about{background:var(--black); color:#fff;}
+  .about .eyebrow{background:rgba(247,181,0,0.12); color:var(--yellow);}
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  .about p.body{color:#bdbdbd; font-size:15.5px; margin-bottom:20px;}
+  .stats-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .stat{background:#161616; border-radius:14px; padding:24px; text-align:center;}
+  .stat .num{font-family:'Poppins'; font-weight:800; font-size:34px; color:var(--yellow);}
+  .stat .lab{font-size:12.5px; color:#a5a5a5; margin-top:4px;}
+
+  /* FAQ */
+  .faq-item{border-bottom:1px solid #eee;}
+  .faq-q{width:100%; text-align:left; background:none; border:none; padding:22px 0; font-family:'Poppins'; font-weight:700; font-size:16px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;}
+  .faq-q .plus{transition:transform .25s ease; font-size:20px; color:var(--red);}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .faq-a p{padding-bottom:22px; color:var(--gray-500); font-size:14.5px; max-width:640px;}
+  .faq-item.open .faq-a{max-height:200px;}
+
+  /* Booking */
+  .booking{background:var(--gray-50);}
+  .book-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px;}
+  .book-info h2{font-size:clamp(28px,4vw,40px); margin-bottom:18px;}
+  .book-info p{color:var(--gray-500); font-size:15.5px; margin-bottom:28px; max-width:420px;}
+  .book-info .row{display:flex; gap:14px; margin-bottom:16px; font-size:14.5px;}
+  .book-info .row b{display:block; font-size:13px;}
+  .book-form{background:#fff; border-radius:var(--radius); padding:32px; box-shadow:var(--shadow);}
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .form-grid .full{grid-column:1/-1;}
+  .form-grid label{font-size:12px; font-weight:700; color:var(--gray-500); margin-bottom:6px; display:block;}
+  .form-grid input, .form-grid select, .form-grid textarea{width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; font-family:inherit;}
+  .form-grid textarea{resize:vertical; min-height:70px;}
+  .book-form button[type=submit]{width:100%; margin-top:22px; padding:16px;}
+  .success-msg{display:none; background:rgba(37,183,86,0.1); color:#1a8a3d; padding:16px; border-radius:12px; font-weight:600; font-size:14px; margin-top:18px; text-align:center;}
+  .success-msg.show{display:block;}
+
+  /* Contact */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  .contact-card{background:var(--gray-50); border-radius:var(--radius); padding:28px;}
+  .contact-card h3{font-size:15px; margin-bottom:6px;}
+  .contact-card p{color:var(--gray-500); font-size:14px;}
+  .map-embed{border-radius:var(--radius); overflow:hidden; height:100%; min-height:280px;}
+  .map-embed iframe{width:100%; height:100%; border:0; min-height:280px;}
+
+  /* Footer */
+  footer{background:var(--black); color:#fff; padding:64px 0 24px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:48px; padding-bottom:40px; border-bottom:1px solid #262626;}
+  .foot-logo{display:flex; gap:12px; align-items:center; margin-bottom:16px;}
+  footer p.desc{color:#9a9a9a; font-size:14px; max-width:320px;}
+  footer h4{font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--yellow); margin-bottom:18px;}
+  footer .flinks a, footer .fcontact p{display:block; color:#c9c9c9; font-size:14px; margin-bottom:12px;}
+  .social{display:flex; gap:10px; margin-top:16px;}
+  .social a{width:38px; height:38px; border:1px solid #333; border-radius:8px; display:flex; align-items:center; justify-content:center;}
+  .bottom-row{display:flex; justify-content:space-between; align-items:center; padding-top:24px; font-size:13px; color:#8a8a8a; flex-wrap:wrap; gap:12px;}
+  .bottom-row a{margin-left:20px; color:#8a8a8a;}
+
+  /* Floating buttons */
+  .float-stack{position:fixed; right:22px; bottom:26px; display:flex; flex-direction:column; gap:14px; z-index:200;}
+  .fbtn{width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; color:#fff; box-shadow:0 8px 22px rgba(0,0,0,0.25); cursor:pointer; border:none;}
+  .fbtn.wa{background:#25D366;}
+  .fbtn.call{background:var(--red);}
+  .fbtn.book{background:var(--black); font-size:13px; font-weight:700; width:auto; padding:0 20px; border-radius:999px;}
+
+  @media (max-width:920px){
+    .nav-links, .nav-right .phone-link, .status-pill{display:none;}
+    .hamburger{display:flex;}
+    .why-grid, .services-grid{grid-template-columns:repeat(2,1fr);}
+    .products-grid{grid-template-columns:repeat(2,1fr);}
+    .area-grid, .about-grid, .book-grid, .contact-grid, .foot-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:560px){
+    .why-grid, .services-grid, .products-grid{grid-template-columns:1fr;}
+    .form-grid{grid-template-columns:1fr;}
+    .float-stack{right:14px; bottom:16px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announce" id="announceBar">
+  <span>✨ Festive Offer: Free home inspection on all AC, fan & inverter repairs this month — call 98760-77264</span>
+  <button class="close" onclick="document.getElementById('announceBar').style.display='none'">✕</button>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="container">
+    <nav>
+      <a href="#home" class="logo">
+        <div class="logo-icon">⚡</div>
+        <div class="logo-text">
+          <div class="top">CHD</div>
+          <div class="sub">CHANDIGARH ELECTRICALS</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#booking">Booking</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-right">
+        <div class="status-pill" id="statusPill">Checking…</div>
+        <a class="phone-link" href="tel:9876077264">98760-77264</a>
+        <a href="#booking" class="btn btn-primary" style="padding:10px 22px; font-size:14px;">Book Service</a>
+        <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">Services</a>
+    <a href="#products">Products</a>
+    <a href="#about">About</a>
+    <a href="#booking">Booking</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:9876077264">Call 98760-77264</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="container hero-inner">
+    <div class="eyebrow reveal"><span class="dot"></span> ANANDPUR SAHIB, PUNJAB</div>
+    <h1 class="reveal d1">We <span class="r">repair</span>,<br>we <span class="y">sell</span>,<br>we visit your home.</h1>
+    <p class="lead reveal d2">Trusted electricians for wiring, switchboards, fans, ACs, inverters and more — genuine products, fair prices, same-day home visits across Anandpur Sahib and nearby areas.</p>
+    <div class="hero-ctas reveal d3">
+      <a href="#booking" class="btn btn-primary">Book Service</a>
+      <a href="tel:9876077264" class="btn btn-outline">📞 Call Now</a>
+      <a href="https://wa.me/919876077264" class="btn btn-whatsapp" target="_blank">💬 WhatsApp</a>
+    </div>
+    <div class="hero-badges reveal d4">
+      <div class="b">10+ <span>Years of service</span></div>
+      <div class="b">4,000+ <span>Repairs completed</span></div>
+      <div class="b">4.9★ <span>Customer rating</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Brands -->
+<section class="brands">
+  <div class="container">
+    <div class="eyebrow">Brands we sell &amp; service</div>
+    <div class="brands-row">
+      <span class="brand">Bajaj</span>
+      <span class="brand">Philips</span>
+      <span class="brand">Syska</span>
+      <span class="brand">Anchor</span>
+      <span class="brand">Havells</span>
+      <span class="brand">Polycab</span>
+      <span class="brand">Crompton</span>
+      <span class="brand">GM Modular</span>
+      <span class="brand">Orient</span>
+      <span class="brand">Usha</span>
+      <span class="brand">Luminous</span>
+      <span class="brand">V-Guard</span>
+    </div>
+  </div>
+</section>
+
+<!-- Why choose us -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Why choose us</div>
+      <h2>Local, reliable, and genuinely fast</h2>
+      <p>We're the electricians your neighbours already call. Here's why they keep coming back.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="ic">👷</div><h3>Experienced electricians</h3><p>Trained, background-checked technicians who've handled thousands of homes in Anandpur Sahib.</p></div>
+      <div class="why-card"><div class="ic">💰</div><h3>Affordable pricing</h3><p>Upfront estimates before we start — no hidden charges, no surprises on the bill.</p></div>
+      <div class="why-card"><div class="ic">⚡</div><h3>Same-day service</h3><p>Most repair requests booked before 4 PM are handled the same day.</p></div>
+      <div class="why-card"><div class="ic">✅</div><h3>Genuine products</h3><p>Only authorised stock from Havells, Bajaj, Polycab, Crompton and other trusted brands.</p></div>
+      <div class="why-card"><div class="ic">🛡️</div><h3>Warranty support</h3><p>Every repair and product sale is backed by clear warranty terms.</p></div>
+      <div class="why-card"><div class="ic">🏠</div><h3>Trusted home visits</h3><p>Uniformed technicians, ID verification, and respectful, clean work at your home.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="section" id="services" style="background:var(--gray-50);">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Our services</div>
+      <h2>Everything electrical, handled</h2>
+      <p>From a flickering switch to a full home rewiring job — book any of these in a couple of taps.</p>
+    </div>
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Shop products</div>
+      <h2>Electrical products, delivered or fitted</h2>
+      <p>Genuine products from brands you trust. Enquire on WhatsApp for stock and same-day fitting.</p>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+</section>
+
+<!-- Service area -->
+<section class="area" id="area">
+  <div class="container area-grid">
+    <div>
+      <div class="eyebrow" style="background:rgba(0,0,0,0.08); color:#000;">📍 Service area</div>
+      <h2>Do we visit your area? Check your pincode.</h2>
+      <p>We cover Anandpur Sahib, Nangal, Kiratpur Sahib, Rupnagar, Nurpur Bedi, Bharatgarh and surrounding villages in Ropar district.</p>
+    </div>
+    <div class="pin-card">
+      <label>Enter 6-digit pincode</label>
+      <div class="pin-row">
+        <input type="text" id="pinInput" maxlength="6" placeholder="140133">
+        <button class="btn btn-dark" onclick="checkPin()">Check</button>
+      </div>
+      <div class="pin-result" id="pinResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Customer stories</div>
+      <h2>What our customers say</h2>
+    </div>
+    <div class="testi-track" id="testiTrack"></div>
+  </div>
+</section>
+
+<!-- About + stats -->
+<section class="section about" id="about">
+  <div class="container about-grid">
+    <div>
+      <div class="eyebrow">About us</div>
+      <h2 style="font-size:clamp(26px,4vw,38px); margin-bottom:16px;">Anandpur Sahib's trusted neighbourhood electricians</h2>
+      <p class="body">Chandigarh Electricals has been repairing, selling and installing electrical products in Anandpur Sahib for over a decade. What started as a small shop on New Awadi Road has grown into the area's most trusted name for home electrical work — because we show up, we do it right, and we stand behind our work.</p>
+      <p class="body">Whether it's a same-day fan repair or a complete home rewiring job, our technicians treat every home like their own.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat"><div class="num">4,000+</div><div class="lab">Repairs completed</div></div>
+      <div class="stat"><div class="num">6,500+</div><div class="lab">Customers served</div></div>
+      <div class="stat"><div class="num">2,000+</div><div class="lab">Products sold</div></div>
+      <div class="stat"><div class="num">10+</div><div class="lab">Years of experience</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container" style="max-width:820px;">
+    <div class="section-head">
+      <div class="eyebrow">FAQs</div>
+      <h2>Common questions</h2>
+    </div>
+    <div id="faqList"></div>
+  </div>
+</section>
+
+<!-- Booking -->
+<section class="section booking" id="booking">
+  <div class="container book-grid">
+    <div class="book-info">
+      <div class="eyebrow">Book a visit</div>
+      <h2>One call away.<br><span style="color:var(--red)">We come to you.</span></h2>
+      <p>Fill in the form — pick a date and slot, describe the problem, and our technician will be at your doorstep on time.</p>
+      <div class="row"><span>📞</span><div><b>Phone</b>98760-77264, 99885-71178</div></div>
+      <div class="row"><span>📍</span><div><b>Address</b>New Awadi, Anandpur Sahib, Punjab (Ropar)</div></div>
+      <div class="row"><span>✉️</span><div><b>Email</b>chandigarhelectricalschd@gmail.com</div></div>
+    </div>
+    <form class="book-form" id="bookingForm">
+      <div class="form-grid">
+        <div><label>Full name *</label><input required type="text" name="name"></div>
+        <div><label>Mobile number *</label><input required type="tel" name="mobile" pattern="[0-9]{10}" maxlength="10"></div>
+        <div class="full"><label>Email</label><input type="email" name="email"></div>
+        <div class="full"><label>Address *</label><input required type="text" name="address"></div>
+        <div><label>Pincode *</label><input required type="text" name="pincode" maxlength="6"></div>
+        <div><label>Preferred service *</label>
+          <select required name="service">
+            <option value="">Select service</option>
+            <option>AC repair / installation</option>
+            <option>Fan repair / installation</option>
+            <option>Electrical wiring</option>
+            <option>Switchboard replacement</option>
+            <option>Inverter repair / installation</option>
+            <option>MCB replacement</option>
+            <option>LED lighting</option>
+            <option>Geyser installation</option>
+            <option>Emergency electrician</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div><label>Preferred date *</label><input required type="date" name="date"></div>
+        <div><label>Preferred time slot *</label>
+          <select required name="slot">
+            <option value="">Select slot</option>
+            <option>9 AM – 12 PM</option>
+            <option>12 PM – 3 PM</option>
+            <option>3 PM – 6 PM</option>
+            <option>6 PM – 8 PM</option>
+          </select>
+        </div>
+        <div class="full"><label>Describe the problem</label><textarea name="problem" placeholder="e.g. Ceiling fan makes a buzzing noise and spins slowly"></textarea></div>
+        <div class="full">
+          <label>Photo of the item / issue *</label>
+          <input required type="file" name="photo" id="photoInput" accept="image/*">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Confirm Booking</button>
+      <div class="success-msg" id="successMsg">
+        ✅ Booking received! WhatsApp should have opened in a new tab with your details filled in —
+        <b>please attach your photo there and tap Send</b> to notify us. If it didn't open, tap the button below.
+        <div style="margin-top:12px;"><a id="waFallback" class="btn btn-whatsapp" href="#" target="_blank" style="padding:10px 20px; font-size:13px;">Open WhatsApp Manually</a></div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Contact us</div>
+      <h2>Get in touch</h2>
+    </div>
+    <div class="contact-grid">
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="contact-card"><h3>📞 Phone</h3><p>98760-77264, 99885-71178</p></div>
+        <div class="contact-card"><h3>✉️ Email</h3><p>chandigarhelectricalschd@gmail.com</p></div>
+        <div class="contact-card"><h3>📍 Address</h3><p>New Awadi, Anandpur Sahib, Punjab (Rupnagar)</p></div>
+        <div class="contact-card"><h3>🕒 Business hours</h3><p>Mon–Sat, 9:00 AM – 8:00 PM · <span id="contactStatus"></span></p></div>
+      </div>
+      <div class="map-embed">
+        <iframe loading="lazy" src="https://www.google.com/maps?q=Anandpur+Sahib,+Punjab&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">
+          <div class="logo-icon">⚡</div>
+          <h3 style="font-size:20px;">Chandigarh Electricals</h3>
+        </div>
+        <p class="desc">Your trusted neighbourhood electricals shop in Anandpur Sahib. Repairs, sales and home service — done right since day one.</p>
+        <div class="social">
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="https://wa.me/919876077264" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="flinks">
+        <h4>Quick links</h4>
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#booking">Booking</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="fcontact">
+        <h4>Visit</h4>
+        <p>📞 98760-77264, 99885-71178</p>
+        <p>✉️ chandigarhelectricalschd@gmail.com</p>
+        <p>📍 New Avadi, Anandpur Sahib, Punjab — Distt. Ropar</p>
+      </div>
+    </div>
+    <div class="bottom-row">
+      <span>© 2026 Chandigarh Electricals. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating buttons -->
+<div class="float-stack">
+  <a class="fbtn book" href="#booking">📅 Book</a>
+  <a class="fbtn call" href="tel:9876077264" aria-label="Call">📞</a>
+  <a class="fbtn wa" href="https://wa.me/919876077264" target="_blank" aria-label="WhatsApp">💬</a>
+</div>
+
+<script>
+/* ---------- Data ---------- */
+const services = [
+  {icon:"❄️", name:"AC Repair & Installation", desc:"Split & window AC servicing, gas refill, full installation.", price:"₹399", unit:"starting"},
+  {icon:"🌀", name:"Fan Repair & Installation", desc:"Ceiling, wall and exhaust fan repair or new fitting.", price:"₹149", unit:"starting"},
+  {icon:"🔌", name:"Electrical Wiring", desc:"New wiring, rewiring and safety inspections for homes.", price:"₹999", unit:"starting"},
+  {icon:"🧰", name:"Switchboard Replacement", desc:"Modular switchboard upgrade with modern fittings.", price:"₹249", unit:"starting"},
+  {icon:"🔋", name:"Inverter Installation", desc:"Inverter & battery setup with wiring and safety checks.", price:"₹599", unit:"starting"},
+  {icon:"🛠️", name:"Inverter Repair", desc:"Diagnosis and repair for all major inverter brands.", price:"₹299", unit:"starting"},
+  {icon:"⚡", name:"MCB Replacement", desc:"Circuit breaker replacement for tripping or faults.", price:"₹199", unit:"starting"},
+  {icon:"💡", name:"LED Lighting", desc:"LED panel, bulb and strip light installation.", price:"₹99", unit:"starting"},
+  {icon:"🔘", name:"Modular Switches", desc:"Premium modular switch and socket installation.", price:"₹149", unit:"starting"},
+  {icon:"🚿", name:"Geyser Installation", desc:"Geyser fitting with safety valve and wiring check.", price:"₹349", unit:"starting"},
+  {icon:"🌬️", name:"Exhaust Fan Installation", desc:"Kitchen and bathroom exhaust fan fitting.", price:"₹199", unit:"starting"},
+  {icon:"🚨", name:"Emergency Electrician", desc:"Urgent home visits for electrical faults, any time.", price:"₹499", unit:"call-out"},
+];
+
+const products = [
+  {tag:"Best Seller", cat:"Fans & Coolers", name:"Premium Ceiling Fan", brand:"Havells", price:"₹2,499", icon:"🌀"},
+  {tag:"New Arrival", cat:"Switches", name:"Modular Switch Set", brand:"Anchor", price:"₹199", icon:"🔘"},
+  {tag:"", cat:"Wires", name:"1.5mm PVC Wire (90m)", brand:"Polycab", price:"₹1,899", icon:"🧵"},
+  {tag:"", cat:"MCBs", name:"Single Pole MCB", brand:"Havells", price:"₹149", icon:"⚡"},
+  {tag:"", cat:"LED Lights", name:"9W LED Bulb (Pack of 4)", brand:"Syska", price:"₹399", icon:"💡"},
+  {tag:"Best Seller", cat:"Inverters", name:"Sine Wave Inverter 850VA", brand:"Luminous", price:"₹4,999", icon:"🔋"},
+  {tag:"", cat:"Extension Boards", name:"6-Socket Extension Board", brand:"GM Modular", price:"₹549", icon:"🔌"},
+  {tag:"New Arrival", cat:"Coolers", name:"Desert Air Cooler 55L", brand:"Bajaj", price:"₹6,999", icon:"❄️"},
+];
+
+const testimonials = [
+  {name:"Ramanpreet Kaur", loc:"Anandpur Sahib", text:"Called for a fan repair in the morning, technician was at my door by afternoon. Fixed in 20 minutes.", init:"RK"},
+  {name:"Gurpreet Singh", loc:"Nangal", text:"Bought a ceiling fan and got it installed same day. Fair pricing and genuine product.", init:"GS"},
+  {name:"Simran Kaur", loc:"Kiratpur Sahib", text:"Our inverter stopped working during a power cut — they came within an hour. Excellent service.", init:"SK"},
+  {name:"Harpreet Singh", loc:"Rupnagar", text:"Rewired my entire house. Clean work, no mess, and they explained everything clearly.", init:"HS"},
+];
+
+const faqs = [
+  {q:"How much do repairs typically cost?", a:"Most repairs start between ₹99–₹499 depending on the issue. We always confirm the estimate with you before starting any work."},
+  {q:"Do you charge for home visits?", a:"Home visits are free for customers who go ahead with the service. A small call-out fee may apply only if no work is carried out."},
+  {q:"What are your service timings?", a:"We're open Monday to Saturday, 9:00 AM to 8:00 PM. Emergency electrician visits are available beyond these hours on request."},
+  {q:"Is there a warranty on repairs and products?", a:"Yes — repairs come with a 30-day service warranty and products carry manufacturer warranty as applicable."},
+  {q:"What payment methods do you accept?", a:"We accept cash, UPI, and all major payment apps including Google Pay and PhonePe."},
+];
+
+const validPincodes = ["140118","140126","140133","140120","140108","140117","140112"];
+
+/* ---------- Render ---------- */
+function renderServices(){
+  const grid = document.getElementById('servicesGrid');
+  grid.innerHTML = services.map(s => `
+    <div class="svc-card">
+      <div class="svc-img" style="background:linear-gradient(135deg, rgba(230,57,70,0.08), rgba(247,181,0,0.12)); display:flex; align-items:center; justify-content:center; font-size:48px;">${s.icon}</div>
+      <div class="svc-body">
+        <h3>${s.name}</h3>
+        <p>${s.desc}</p>
+        <div class="svc-foot">
+          <div class="svc-price">${s.price}<span>${s.unit}</span></div>
+          <button class="svc-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth', block:'start'})">Book Now</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function renderProducts(){
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = products.map(p => `
+    <div class="prod-card">
+      <div class="prod-img">
+        ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
+        ${p.icon}
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">${p.cat}</div>
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-brand">${p.brand}</div>
+        <div class="prod-foot">
+          <div class="prod-price">${p.price}</div>
+          <a class="wa-btn" href="https://wa.me/919876077264?text=Hi, I'm interested in ${encodeURIComponent(p.name)}" target="_blank">💬</a>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function renderTestimonials(){
+  const track = document.getElementById('testiTrack');
+  track.innerHTML = testimonials.map(t => `
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"${t.text}"</p>
+      <div class="testi-person">
+        <div class="avatar">${t.init}</div>
+        <div><div class="name">${t.name}</div><div class="loc">${t.loc}</div></div>
+      </div>
+    </div>`).join('');
+}
+
+function renderFaqs(){
+  const list = document.getElementById('faqList');
+  list.innerHTML = faqs.map((f,i) => `
+    <div class="faq-item" id="faq-${i}">
+      <button class="faq-q" onclick="toggleFaq(${i})"><span>${f.q}</span><span class="plus">+</span></button>
+      <div class="faq-a"><p>${f.a}</p></div>
+    </div>`).join('');
+}
+function toggleFaq(i){
+  document.getElementById('faq-'+i).classList.toggle('open');
+}
+
+/* ---------- Pincode checker ---------- */
+function checkPin(){
+  const val = document.getElementById('pinInput').value.trim();
+  const resultEl = document.getElementById('pinResult');
+  if(val.length !== 6 || isNaN(val)){
+    resultEl.className = 'pin-result pin-no';
+    resultEl.textContent = 'Please enter a valid 6-digit pincode.';
+    return;
+  }
+  if(validPincodes.includes(val)){
+    resultEl.className = 'pin-result pin-yes';
+    resultEl.textContent = '✅ Service Available in your area!';
+  } else {
+    resultEl.className = 'pin-result pin-no';
+    resultEl.textContent = '❌ Currently Not Available — call us to check nearby coverage.';
+  }
+}
+
+/* ---------- Open/Closed status ---------- */
+function updateStatus(){
+  const now = new Date();
+  const day = now.getDay(); // 0 = Sunday
+  const hour = now.getHours();
+  const isOpen = day !== 0 && hour >= 9 && hour < 20;
+  const pill = document.getElementById('statusPill');
+  const contactStatus = document.getElementById('contactStatus');
+  if(isOpen){
+    pill.textContent = 'Open Now';
+    pill.className = 'status-pill status-open';
+    if(contactStatus) contactStatus.textContent = '🟢 Open now';
+  } else {
+    pill.textContent = 'Closed · Opens at 9:00 AM';
+    pill.className = 'status-pill status-closed';
+    if(contactStatus) contactStatus.textContent = '🔴 Closed now';
+  }
+}
+
+/* ---------- Booking form ---------- */
+const BUSINESS_WHATSAPP = "919876077264"; // Chandigarh Electricals WhatsApp number (country code + number, no + or spaces)
+
+const bookingForm = document.getElementById('bookingForm');
+if (bookingForm) {
+  bookingForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+
+    const form = e.target;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return false;
+    }
+
+    try {
+      const data = Object.fromEntries(new FormData(form).entries());
+      const photoInputEl = document.getElementById('photoInput');
+      const photoFile = photoInputEl && photoInputEl.files ? photoInputEl.files[0] : null;
+
+      const message =
+`New Booking Request — Chandigarh Electricals
+
+Name: ${data.name}
+Mobile: ${data.mobile}
+Email: ${data.email || '-'}
+Address: ${data.address}
+Pincode: ${data.pincode}
+Service: ${data.service}
+Preferred date: ${data.date}
+Preferred slot: ${data.slot}
+Problem: ${data.problem || '-'}
+Photo attached by customer: ${photoFile ? photoFile.name : 'Not attached'}`;
+
+      const waUrl = `https://wa.me/${BUSINESS_WHATSAPP}?text=${encodeURIComponent(message)}`;
+      const fallback = document.getElementById('waFallback');
+      if (fallback) fallback.href = waUrl;
+
+      let waWindow = null;
+      try {
+        // Open WhatsApp with the pre-filled message. Customer must attach the
+        // photo and tap Send themselves — WhatsApp does not allow silently
+        // sending messages or auto-attaching files without a backend using
+        // the WhatsApp Business API. This may be blocked in sandboxed
+        // previews; it will open normally on a real, deployed site.
+        waWindow = window.open(waUrl, '_blank');
+      } catch (openErr) {
+        waWindow = null;
+      }
+
+      const successEl = document.getElementById('successMsg');
+      successEl.classList.add('show');
+      if (!waWindow) {
+        successEl.innerHTML =
+          `⚠️ We couldn't auto-open WhatsApp from here (this can happen in preview environments or if pop-ups are blocked). Tap below to send your booking manually.
+           <div style="margin-top:12px;"><a class="btn btn-whatsapp" href="${waUrl}" target="_blank" style="padding:10px 20px; font-size:13px;">Open WhatsApp</a></div>`;
+      }
+
+      form.reset();
+    } catch (err) {
+      const successEl = document.getElementById('successMsg');
+      successEl.classList.add('show');
+      successEl.innerHTML = `⚠️ Something went wrong processing your booking. Please call us directly at <a href="tel:9876077264">98760-77264</a>.`;
+      console.error('Booking submit error:', err);
+    }
+
+    return false;
+  });
+}
+
+/* ---------- Internal navigation (avoid real anchor navigation, which the
+   artifact sandbox treats as "leaving the app") ---------- */
+document.addEventListener('click', function(e){
+  const link = e.target.closest('a');
+  if (!link) return;
+  const href = link.getAttribute('href');
+  if (href && href.startsWith('#') && href.length > 1) {
+    const targetEl = document.querySelector(href);
+    if (targetEl) {
+      e.preventDefault();
+      e.stopPropagation();
+      targetEl.scrollIntoView({behavior:'smooth', block:'start'});
+      const mm = document.getElementById('mobileMenu');
+      if (mm) mm.classList.remove('open');
+    }
+  }
+}, true);
+
+/* ---------- Init ---------- */
+renderServices();
+renderProducts();
+renderTestimonials();
+renderFaqs();
+updateStatus();
+setInterval(updateStatus, 60000);
+</script>
+</body>
+</html>
